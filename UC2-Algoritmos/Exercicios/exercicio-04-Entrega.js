@@ -9,7 +9,9 @@ const tarefa2 = readline.question('Mais uma: ')
 listaDeTarefas.push(tarefa2)
 
 const tarefa3 = readline.question('A ultima: ')
-listaDeTarefas.push(tarefa3)
+listaDeTarefas.push(tarefa3) 
+
+// Pode fazer assim também: listaDeTarefas.push(tarefa1, tarefa2, tarefa3)
 
 console.log(listaDeTarefas)
 
@@ -21,8 +23,6 @@ Digite o numero da tarefa que vc ja realizou:
 `)
 
 let valorRemover = tarefaRealizada -1
-
-
 
 listaDeTarefas.splice(valorRemover, 1)
 
