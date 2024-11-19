@@ -19,4 +19,4 @@ console.log(filme.transmissoesHoje[2])
 // A)
 // Matheus Nachtergaele
 // Virginia Cavendish
-// canal: "Globo", horario: "14h"
+// { canal: "Globo", horario: "14h" }
