@@ -43,6 +43,10 @@ function guardarPoke() {
         console.log(`${ind+1} - ${pokesJornada[i].nome} - Tipo: ${pokesJornada[i].tipo} - Nível: ${pokesJornada[i].nivel}.`)
     }
     let guardarPoke = readline.questionInt('Escolha um deles para guardar no Laboratorio: ')
+    if (guardarPoke>pokesJornada.length) {
+        console.log('Opção Inválida')
+        return
+    }
     laboratorio.push(pokesJornada[guardarPoke-1])
     pokesJornada.splice(guardarPoke-1, 1)
 
@@ -112,10 +116,10 @@ function resgatar() {
                 tipo = 'Noturno'
                 break;
             case 8:
-                tipo = 'Voador'
+                tipo = 'Inseto'
                 break;
             case 9:
-                tipo = 'Inseto'
+                tipo = 'Voador'
                 break;
             default:
                 console.log('Opção inválida!')
@@ -129,17 +133,28 @@ function resgatar() {
             filtro.push(laboratorio[i])
             ind = filtro.length
            console.log(`${ind} - ${laboratorio[i].nome}`)
+           laboratorio.splice(i, 1)
         } else if (laboratorio[i].tipo[1] === tipo && laboratorio[i].geracao === geracao) {
             filtro.push(laboratorio[i])
                 ind = filtro.length
                console.log(`${ind} - ${laboratorio[i].nome}`)
+               laboratorio.splice(i, 1)
            }
+       } 
+       if (filtro.length===0) {
+        console.log('Não há nenhum pokémon disponível com esse tipo nessa região!')
+        return
        }
-       
        resgatarPoke = readline.questionInt('Escolha um deles para adicionar a sua Equipe: ')
+       if (resgatarPoke>filtro.length) {
+        console.log('Opção Inválida!')
+        return
+       }
        let pokeResgatado = filtro[resgatarPoke-1]
        pokesJornada.push(pokeResgatado)
-       laboratorio.splice(resgatarPoke-1, 1)
+       filtro.splice(resgatarPoke-1, 1)
+       laboratorio.push(filtro[0])
+       console.log(`${pokeResgatado.nome} foi adicionado ao seu time!`)
 }
 
 
