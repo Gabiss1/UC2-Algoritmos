@@ -2,7 +2,7 @@ const rl = require('readline-sync')
 
 const doadores = []
 
-let status = true
+let estado= true
 
 function cadastro() {
     const nome = rl.question('Digite seu Nome Completo: ')
@@ -12,30 +12,34 @@ function cadastro() {
     
     // const dataUltDoacao = rl.question('Digite a data da ultima doacao (dd/mm/aaaa): ')
 
-    while(status === true){
+    while(estado === true){
         const dataUltDoacao = rl.question('Digite a data da ultima doacao (dd/mm/aaaa): ')
-        
-        switch (dataUltDoacao.length) {
-            case 10:
-                console.log('Cadastrado com Sucesso!!!')
-                status = false
-                const cadastrados = {
-                    nome: nome,
-                    idade: idade,
-                    peso: peso,
-                    tipoSang: tipoSang.toUpperCase(),
-                    dataDoacao: dataUltDoacao
-                    // dataDoacao: `${diaDoacao}/${mesDoacao}/${anoDoacao}`
-                } 
-                doadores.push(cadastrados)
-                console.log(cadastrados)
-                break;
-            default:
-                console.log('Digite a Data no Formato Requerido')
-                break;
+        const checagemBarra1 = dataUltDoacao[5]
+        const checagemBarra2 = dataUltDoacao[2]
+        const valorDia = dataUltDoacao.slice(0,2)
+        const valorMes = dataUltDoacao.slice(3,5)
+        const valorAno = dataUltDoacao.slice(6,dataUltDoacao.length)
+    
+        const checagemData = Number(valorDia+valorMes+valorAno)
+    
+        if (dataUltDoacao.length>=10 && checagemData.toString() !== 'NaN' && checagemBarra1 === '/' && checagemBarra2 === '/') {
+            const cadastrados = {
+                nome: nome,
+                idade: idade,
+                peso: peso,
+                tipoSang: tipoSang.toUpperCase(),
+                dataDoacao: dataUltDoacao
+                // dataDoacao: `${diaDoacao}/${mesDoacao}/${anoDoacao}`
+            } 
+            doadores.push(cadastrados)
+            console.log('Doador Cadastrado com Sucesso!')
+            estado = false    
         }
+        else {
+            console.log('Cadastre a Data no Formato Exigido!')
         }
-        status = true
+    }
+        estado = true
 }
 
 function listar() {
@@ -57,18 +61,27 @@ function buscarSang() {
 
 function buscarData() {
     const dataBuscada = rl.question('Digite a Data buscado: ')
-    const anoBuscado = dataBuscada.slice(6,10)
-    const mesBuscado = dataBuscada.slice(3,5)
-    const diaBuscado = dataBuscada.slice(0,2)
 
-    const dataBuscadaValor = parseInt(`${anoBuscado+mesBuscado+diaBuscado}`)
+    function converterData(data) {
+        const ano = data.slice(6,data.length)
+        const mes = data.slice(3,5)
+        const dia = data.slice(0,2)
+        
+        const diaConvertido = Number(dia)
+        const mesConvertido = Number(mes)
+        const anoConvertido = Number(ano)
+    
+        const dataComparacao = anoConvertido*10000+mesConvertido*100+diaConvertido
+    
+    
+        return dataComparacao
+    }
+
+    const dataBuscadaConvertida = converterData(dataBuscada)
 
     for (let i = 0; i < doadores.length; i++) {
-        const ano = doadores[i].dataDoacao.slice(6,doadores[i].dataDoacao.length)
-    const mes = doadores[i].dataDoacao.slice(3,5)
-    const dia = doadores[i].dataDoacao.slice(0,2)
-    const dataComparacao = parseInt(`${ano+mes+dia}`)
-    if (dataComparacao<=dataBuscadaValor) {
+       const dataDoacaoConvertida = converterData(doadores[i].dataDoacao)
+    if (dataDoacaoConvertida<=dataBuscadaConvertida) {
         console.log(doadores[i])
     } else {
         console.log('Erro')
@@ -86,7 +99,9 @@ function buscarData() {
 //     });
 // }
 
-while(true){
+let menu = true
+
+while(menu === true){
     console.clear()
     console.log(
     `
@@ -98,7 +113,7 @@ while(true){
     5 - Sair
     `
     )
-    opcao = parseInt(rl.question('Escolha uma opcao: '));
+    opcao = rl.questionInt('Escolha uma opcao: ');
     
     switch (opcao) {
         case 1:
@@ -114,8 +129,9 @@ while(true){
             buscarData()
         break;
         case 5:
-            console.log('Fim de Programa')
-            process.exit(0)
+            console.log('Finalizando o Programa...')
+            menu = false
+            break;
         default:
             console.log('Opcao Invalida')
             break;
