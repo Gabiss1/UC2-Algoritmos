@@ -35,6 +35,7 @@ function cadastro() {
                 break;
         }
         }
+        status = true
 }
 
 function listar() {
@@ -63,7 +64,7 @@ function buscarData() {
     const dataBuscadaValor = parseInt(`${anoBuscado+mesBuscado+diaBuscado}`)
 
     for (let i = 0; i < doadores.length; i++) {
-        const ano = doadores[i].dataDoacao.slice(6,10)
+        const ano = doadores[i].dataDoacao.slice(6,doadores[i].dataDoacao.length)
     const mes = doadores[i].dataDoacao.slice(3,5)
     const dia = doadores[i].dataDoacao.slice(0,2)
     const dataComparacao = parseInt(`${ano+mes+dia}`)
