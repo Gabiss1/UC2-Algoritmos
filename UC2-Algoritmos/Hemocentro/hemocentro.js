@@ -8,9 +8,23 @@ function cadastro() {
     const nome = rl.question('Digite seu Nome Completo: ')
     const idade = rl.questionInt('Digite sua Idade: ')
     const peso = rl.questionInt('Digite seu Peso: ')
-    const tipoSang = rl.question('Digite seu Tipo Sanguineo (A-, B+, AB+, O-, etc.): ')
-    
-    // const dataUltDoacao = rl.question('Digite a data da ultima doacao (dd/mm/aaaa): ')
+    let tipoSangVerficado
+
+       while (estado === true) {
+           const tipoSang = rl.question('Digite seu Tipo Sanguineo (A-, B+, AB+, O-, etc.): ').toUpperCase()
+           console.log(tipoSang)
+   
+           if (tipoSang === 'A' || tipoSang === 'B' || tipoSang === 'O' || tipoSang === 'AB') {
+               tipoSangVerficado = tipoSang+'+'
+               estado = false
+           } else if (tipoSang === 'A+' || tipoSang === 'B+' || tipoSang === 'O+' || tipoSang === 'AB+' || tipoSang === 'A-' || tipoSang === 'B-' || tipoSang === 'O-' || tipoSang === 'AB-'){
+               tipoSangVerficado = tipoSang
+               estado = false
+           } else {
+               console.log('Tipo sanguíneo Inválido! Digite Novamente')
+           }
+       } 
+        estado = true
 
     while(estado === true){
         const dataUltDoacao = rl.question('Digite a data da ultima doacao (dd/mm/aaaa): ')
@@ -27,7 +41,7 @@ function cadastro() {
                 nome: nome,
                 idade: idade,
                 peso: peso,
-                tipoSang: tipoSang.toUpperCase(),
+                tipoSang: tipoSangVerficado,
                 dataDoacao: dataUltDoacao
                 // dataDoacao: `${diaDoacao}/${mesDoacao}/${anoDoacao}`
             } 
@@ -56,7 +70,12 @@ function buscarSang() {
             pesquisa.push(doadores[i])
         }
     }
-    console.log(pesquisa)
+    if (pesquisa.length>0) {
+        console.log(pesquisa)
+    } else {
+        console.log('Não Há ninguém cadastrado com esse tipo sanguíneo!')
+    }
+  
 }
 
 function buscarData() {
@@ -138,4 +157,3 @@ while(menu === true){
     }
     rl.question('Pressione ENTER para continuar...')
     }
-
