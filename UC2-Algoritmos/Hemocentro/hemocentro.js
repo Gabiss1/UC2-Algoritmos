@@ -1,9 +1,10 @@
-const rl = require('readline-sync')
+const rl = require('readline-sync')  // Pacote para usar question no terminal.
 
-const doadores = []
+const doadores = []  // Array para armazenas os objetos "Cadastrados" que serão criados pela função cadastro
 
-let estado= true
+let estado= true  // Variável de Status para iniciar e finalizar loopings
 
+// Função para Cadastro de Doadores
 function cadastro() {
     const nome = rl.question('Digite seu Nome Completo: ')
     const idade = rl.questionInt('Digite sua Idade: ')
@@ -12,7 +13,6 @@ function cadastro() {
 
        while (estado === true) {
            const tipoSang = rl.question('Digite seu Tipo Sanguineo (A-, B+, AB+, O-, etc.): ').toUpperCase()
-           console.log(tipoSang)
    
            if (tipoSang === 'A' || tipoSang === 'B' || tipoSang === 'O' || tipoSang === 'AB') {
                tipoSangVerficado = tipoSang+'+'
@@ -26,46 +26,74 @@ function cadastro() {
        } 
         estado = true
 
-    while(estado === true){
-        const dataUltDoacao = rl.question('Digite a data da ultima doacao (dd/mm/aaaa): ')
-        const checagemBarra1 = dataUltDoacao[5]
-        const checagemBarra2 = dataUltDoacao[2]
-        const valorDia = dataUltDoacao.slice(0,2)
-        const valorMes = dataUltDoacao.slice(3,5)
-        const valorAno = dataUltDoacao.slice(6,dataUltDoacao.length)
-    
-        const checagemData = Number(valorDia+valorMes+valorAno)
-    
-        if (dataUltDoacao.length>=10 && checagemData.toString() !== 'NaN' && checagemBarra1 === '/' && checagemBarra2 === '/') {
-            const cadastrados = {
-                nome: nome,
-                idade: idade,
-                peso: peso,
-                tipoSang: tipoSangVerficado,
-                dataDoacao: dataUltDoacao
-                // dataDoacao: `${diaDoacao}/${mesDoacao}/${anoDoacao}`
-            } 
-            doadores.push(cadastrados)
-            console.log('Doador Cadastrado com Sucesso!')
-            estado = false    
-        }
-        else {
-            console.log('Cadastre a Data no Formato Exigido!')
-        }
-    }
+     while(estado === true){
+         const dataUltDoacao = rl.question('Digite a data da ultima doacao (dd/mm/aaaa): ')
+         const checagemBarra1 = dataUltDoacao[5]
+         const checagemBarra2 = dataUltDoacao[2]
+         const valorDia = dataUltDoacao.slice(0,2)
+         const valorMes = dataUltDoacao.slice(3,5)
+         const valorAno = dataUltDoacao.slice(6,dataUltDoacao.length)
+     
+         const checagemData = Number(valorDia+valorMes+valorAno)
+     
+         if (dataUltDoacao.length>=10 && checagemData.toString() !== 'NaN' && checagemBarra1 === '/' && checagemBarra2 === '/') {
+             if (valorDia<=31 && valorMes<=12) {
+                 const cadastrados = {
+                     nome: nome,
+                     idade: idade,
+                     peso: peso,
+                     tipoSang: tipoSangVerficado,
+                     dataDoacao: dataUltDoacao
+                 } 
+                 doadores.push(cadastrados)
+                 console.log('Doador Cadastrado com Sucesso!')
+                 estado = false
+             } else {
+                 console.log('Cadastre uma Data Válida!')
+             }
+               
+         }
+         else {
+             console.log('Cadastre a Data no Formato Exigido!')
+         }
+     }
         estado = true
 }
+// A função reliza as seguintes perguntas em relação ao usuário: Nome, Idade, Peso, Tipo Sanguíneo e Data da Última Doação.
+// Após inserir os valores de Tipo Sanguíneo e Data da Última doação os valores passam por um processo de validação.
+// O processo de validação do Sangue consiste em checar se o tipo inserido existe e, além disso, corrige o valor inserido caso esteja sem sinal após a Letra.
+// A validacão de data consiste em verificar se o formato inserido condiz com o formato exigido e se os valoress condizem com as possibilidades.
+// Nela também usamos o método Slice, que serve para separar determinadas partes do valor inserido, em formato de texto, pelo usuário. 
+// Isso ocorre declarando, no método, determinada posição e quantos caractéres serão selecionados a partir da posição escolhida. 
+// Esse valor pode ser armazenado dentro de uma variável para, depois, ser usado pela função.
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// Função de Listar os Doadores
 function listar() {
     for (let i = 0; i < doadores.length; i++) {
-        console.log(doadores[i])
+        if (doadores.length>0) {
+            console.log(doadores[i])
+        } else {
+            console.log('Não há doadores cadastrados!')
+        }
+       
     }
 }
+// Essa função lê e exibe os valores inseridos no Array de Doadores.
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// Função de Busca por Tipo Sanguíneo
 function buscarSang() {
-    const tipoSanguineoBuscado = rl.question('Digite o Tipo sanguineo que voce deseja procurar: ')
+    let tipoSanguineoBuscado = rl.question('Digite o Tipo sanguineo que voce deseja procurar: ')
     const pesquisa = []
+
     for (let i = 0; i < doadores.length; i++) {
+        if (tipoSanguineoBuscado.length === 1 || tipoSanguineoBuscado.toUpperCase() === 'AB') {
+            tipoSanguineoBuscado = tipoSanguineoBuscado+'+' 
+            if (doadores[i].tipoSang === tipoSanguineoBuscado.toUpperCase()) {
+                pesquisa.push(doadores[i])
+            }
+        } else 
         if (doadores[i].tipoSang === tipoSanguineoBuscado.toUpperCase()) {
             pesquisa.push(doadores[i])
         }
@@ -77,7 +105,12 @@ function buscarSang() {
     }
   
 }
+// Essa função permite ao usuário buscar os doadores que possuem um Tipo Sanguíneo específico.
+// Para isso, ela realiza um pergunta ao usuário, acessa o array de doadores e exibe os doadores em que o tipo sanguíneo cadastrado condiz com o tipo buscado.
+// Essa função também corrige o valor digitado pelo usuário adicionando o sinal de + caso não haja sinal após a letra.
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// Função de Busca por Data
 function buscarData() {
     const dataBuscada = rl.question('Digite a Data buscado: ')
 
@@ -107,20 +140,13 @@ function buscarData() {
     }
     }
 }
+// Essa função permite que o usuário busque todos os doadores que relizaram sua doação até determinada data.
+// Para isso, ela realiza uma pergunta ao usuário, acessa o array de doadores e exibe os doações realizadas até a data inserida pelo usuário.
+// Na comparação de datas é usada uma função específica para comparar duas datas e descobrir qual delas vem antes e depois.
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// function buscarPorDataUltimaDoacao() {
-//     const dataLimite = rl.question("Digite a data limite (dd/mm/aaaa): ");
-//     console.log("\n=== RESULTADO DA BUSCA ===");
-//     doadores.forEach(doador => {
-//         if (doador.dataDoacao === > dataLimite) {
-//             console.log(`Nome: ${doador.nome}, Última Doação: ${doador.dataDoacao}`);
-//         }
-//     });
-// }
-
-let menu = true
-
-while(menu === true){
+// Menu de Opções
+while(estado === true){
     console.clear()
     console.log(
     `
@@ -137,7 +163,7 @@ while(menu === true){
     switch (opcao) {
         case 1:
             cadastro()
-        break; //teste
+        break;
         case 2:
             listar()
         break;
@@ -149,7 +175,7 @@ while(menu === true){
         break;
         case 5:
             console.log('Finalizando o Programa...')
-            menu = false
+            estado = false
             break;
         default:
             console.log('Opcao Invalida')
@@ -157,3 +183,7 @@ while(menu === true){
     }
     rl.question('Pressione ENTER para continuar...')
     }
+
+// Esse looping exibe um menu mostrando as opções oferecidas e permitindo ao usuário escolher qual deseja usar.
+// Ao receber o valor digitado pelo usuário a função condizente é realizada, voltando ao menu após sua conclusão.
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
