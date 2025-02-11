@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">  <!--Permite a utilização de Caracteres especiais-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Adapta a tela para diferentes aparelhos-->
+    <title>Sistema Bancário</title>
+    <!-- Link para voncular o CSS-->
+    <link rel="stylesheet" href="banco.css">
+</head>
+<body>
+    <!--Contêiner principal para o conteúdo da interface-->
+    <div class="container">
+    <!-- Título principal da aplicação-->
+    <h1> Sistema Bancário do Grêmio</h1>
+    <h2>O Maior da América Latina</h2>
+
+    <label for="valor"></label> <!-- Rótulo para o campo de valor-->
+    <div>Digite um Valor:</div>
+    <input type="number" id="valor" placeholder="Ex: 100.00"> <br> <!-- Campo para inserir o valor-->
+    <button id="bt1" onclick="sacar()">Sacar</button>
+    <button id="bt2" onclick="depositar()">Depositar</button>
+
+    <script>
+        const value = HTMLBodyElement.getById('#valor')
+        let saldo = 140
+        function sacar(value) {
+            console.log(value)
+            saldo = saldo-value
+            alert(`Você sacou ${valor} Reais`)
+        }
+    </script>
+
+    <div class="balance">
+        Saldo: R$ <span id="saldo">0.00</span> <!-- Exibição dinâmica do saldo-->
+    </div>
+    </div>
+</body>
+</html>

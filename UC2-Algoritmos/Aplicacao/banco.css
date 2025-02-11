@@ -1,0 +1,44 @@
+body {
+    background-color: aqua;
+    /* Cor de fundo */
+    font-family: 'Times New Roman', Times, serif;
+    /* Fonte da letra */
+    margin: 0;
+    /* Margem */
+    padding: 20px;
+    /* Adiciona espaço interno */
+}
+
+h2 {
+    text-align: center;
+    color:darkblue;
+}
+
+.container {
+    background-color:aliceblue;
+    border-radius: 10px;
+    max-width: 400px;
+    /* Adicionar um espaço interno ao redor do conteúdo*/
+    margin: auto;
+    box-shadow: 0 0 10px rgb(0, 0, 0.9)
+}
+
+#bt1{
+    margin-left: 5.5px;
+}
+
+#bt2{
+    margin-left: 39px;
+}
+
+input{
+    width: 40%;
+    /* Muda o espaço do campo de digitação */
+    padding: 1.5px;
+    /* Espaço interno do texto */
+    margin-left: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    /* Arredonda os campos */
+    border: 2px double #111;
+}

@@ -1,0 +1,7 @@
+function sacar() {
+    
+}
+
+function depositar() {
+    
+}
