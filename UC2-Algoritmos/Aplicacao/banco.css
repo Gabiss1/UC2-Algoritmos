@@ -7,6 +7,7 @@ body {
     /* Margem */
     padding: 20px;
     /* Adiciona espaço interno */
+    text-align: center;
 }
 
 h2 {
@@ -23,16 +24,33 @@ h2 {
     box-shadow: 0 0 10px rgb(0, 0, 0.9)
 }
 
+button{
+    border-radius: 15px;
+    cursor:pointer;
+    /* Muda o cursor quando passa por cima do botão */
+}
+
 #bt1{
-    margin-left: 5.5px;
+    margin-right: 114px;
+    background-color: blue;
+}
+
+#bt1:hover{
+    background-color: blueviolet;
+    
+}
+
+#bt2:hover{
+    background-color: blue;
 }
 
 #bt2{
-    margin-left: 39px;
+    margin-left: 44px;
+    background-color: blueviolet;
 }
 
 input{
-    width: 40%;
+    width: 70%;
     /* Muda o espaço do campo de digitação */
     padding: 1.5px;
     /* Espaço interno do texto */
@@ -41,4 +59,8 @@ input{
     border-radius: 5px;
     /* Arredonda os campos */
     border: 2px double #111;
+}
+
+.balance {
+    margin-top: 15px;
 }

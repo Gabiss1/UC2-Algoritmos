@@ -7,6 +7,7 @@
     <title>Sistema Bancário</title>
     <!-- Link para voncular o CSS-->
     <link rel="stylesheet" href="banco.css">
+    <script src="banco.js"></script>
 </head>
 <body>
     <!--Contêiner principal para o conteúdo da interface-->
@@ -21,18 +22,8 @@
     <button id="bt1" onclick="sacar()">Sacar</button>
     <button id="bt2" onclick="depositar()">Depositar</button>
 
-    <script>
-        const value = HTMLBodyElement.getById('#valor')
-        let saldo = 140
-        function sacar(value) {
-            console.log(value)
-            saldo = saldo-value
-            alert(`Você sacou ${valor} Reais`)
-        }
-    </script>
-
-    <div class="balance">
-        Saldo: R$ <span id="saldo">0.00</span> <!-- Exibição dinâmica do saldo-->
+    <div class="balance">   
+        Saldo: R$ <span id="saldo"></span> <!-- Exibição dinâmica do saldo-->
     </div>
     </div>
 </body>
