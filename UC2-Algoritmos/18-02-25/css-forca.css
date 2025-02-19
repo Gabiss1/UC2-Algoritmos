@@ -1,0 +1,21 @@
+body {
+    background-color: mediumspringgreen;
+    font-family: 'Times New Roman', Times, serif;
+    /* Centralizar o conteúdo*/
+    align-items: center;
+    /* Altura ocupa 100% da altura da janela do navegador */
+    height: 100vh;
+    margin: 0;
+}
+
+#imgAcerto {
+    display: none;
+    width: 100px;
+    height: 100px;
+}
+
+#imgErro {
+    display: none;
+    width: 100px;
+    height: 100px;
+}
