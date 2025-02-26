@@ -1,10 +1,11 @@
 body {
     background-color: mediumspringgreen;
     font-family: 'Times New Roman', Times, serif;
-    /* Centralizar o conteúdo*/
     align-items: center;
-    /* Altura ocupa 100% da altura da janela do navegador */
+    /* Centralizar o conteúdo*/
+    display: flex;
     height: 100vh;
+    /* Altura ocupa 100% da altura da janela do navegador */
     margin: 0;
 }
 
@@ -12,10 +13,70 @@ body {
     display: none;
     width: 100px;
     height: 100px;
+    object-fit: cover;
+    /* Ajustar a imagem para cobrir a área sem distorção */
 }
 
 #imgErro {
     display: none;
     width: 100px;
     height: 100px;
+    object-fit: cover;
+}
+
+.container{
+    text-align: center;
+    width: 110%;
+    max-width: 500px;
+    margin: auto;
+}
+
+#img1, #img2{
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#pokemon-secreto{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px;
+    font-size: 2em;
+}
+
+#numero-letras{
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+#mensagem{
+    font-size: 1.2em;
+    margin: 20px;
+}
+
+input{
+    font-size: 1.2em;
+    padding: 5px;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+button{
+    font-size: 1.2em;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: darkslategray;
+    color: darkslategrey;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: coral;
+}
+
+#tentativas{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
 }

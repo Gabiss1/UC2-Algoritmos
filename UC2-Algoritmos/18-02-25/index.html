@@ -9,6 +9,7 @@
     <script src="script-forca.js"></script>
 </head>
 <body>
+    <div class="container">
     <h1>Descubra o Pokémon</h1>
     <img id="img1" src="./imagens/sceptile.jpg" width="159px">
     <img id="img2" src="imagens/swellow.jfif">
@@ -24,21 +25,21 @@
     </div>
 
     <!-- Divisória onde o número de tentativas restantes será mostrado-->
-    <div id="tentativas">
-        <h3>Tantativas restantes: <span id="tentativas-contagem">5</span></h3>
-    </div>
     <input type="text" id="letra" maxlength="1" placeholder="Digite uma Letra"/>
     <!-- Botão que chama a função verificarLetra-->
     <button onclick="verificarLetra()"> Escolho Você!!!</button>
     <!-- Mostra a mensagem do jogo, informando o resultado do chute-->
     <p id="mensagem"></p>
-
+    <div id="tentativas">
+        <h3>Tantativas restantes: <span id="tentativas-contagem">5</span></h3>
+    </div>
     <button onclick="reiniciarJogo()"> Reiniciar Jogo</button>
     <!-- Imagens que indicam que o chute foi correto ou incorreto-->
     <div id="imagem-resultado">
         <img id="imgErro" src="imagens/riolo-nocaute.jfif">
         <img id="imgAcerto" src="imagens/sceptile-nocaute.jpg">
     </div>
+</div>
     <script src="script-forca.js"></script>
 </body>
 </html>
