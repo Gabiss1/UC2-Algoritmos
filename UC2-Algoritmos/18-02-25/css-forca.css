@@ -69,6 +69,7 @@ button{
     color: darkslategrey;
     border: none;
     cursor: pointer;
+    transition: background-color 1.5s;
 }
 
 button:hover{
@@ -79,4 +80,9 @@ button:hover{
     font-size: 1.5em;
     font-weight: bold;
     margin-top: 20px;
+}
+
+input, button {
+    display: inline-block;
+    margin-top: 10px;
 }
