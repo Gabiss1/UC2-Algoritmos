@@ -13,13 +13,11 @@
     <h1>Descubra o Pokémon</h1>
     <img id="img1" src="./imagens/sceptile.jpg" width="159px">
     <img id="img2" src="imagens/swellow.jfif">
- 
+    <button onclick="escolherPalavra()"> Começar Jornada!</button>
     <div id="palavra">
         <h2>Nome do Pokémon:</h2>
     </div>
-    <div id="pokemon-secreto">
-
-    </div>
+    <div id="pokemon-secreto"></div>
     <div id="numero-letras">
         <h3 id="numero-letras"> Número de Letras: 0</h3>
     </div>
@@ -31,7 +29,7 @@
     <!-- Mostra a mensagem do jogo, informando o resultado do chute-->
     <p id="mensagem"></p>
     <div id="tentativas">
-        <h3>Tantativas restantes: <span id="tentativas-contagem">5</span></h3>
+        <h3>Tentativas restantes: <span id="tentativas-contagem">5</span></h3>
     </div>
     <button onclick="reiniciarJogo()"> Reiniciar Jogo</button>
     <!-- Imagens que indicam que o chute foi correto ou incorreto-->
