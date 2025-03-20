@@ -1,0 +1,74 @@
+/* Usamos * quando quweremos aplicar alguma coisa a tudo */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Times New Roman', Times, serif;
+    background-color: royalblue;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    color: crimson;
+}
+
+.container{
+    text-align: center;
+    background-color: lime;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+h1{
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.tabuleiro{
+    display: grid; 
+    /* Nosso display assume um formato para receber o jogo da velha */
+    grid-template-columns: repeat(3, 1fr); 
+    /* Cria 3 colunas */
+    grid-template-rows: repeat(3, 1fr);
+    /* Cria 3 linhas */
+    gap: 10px;
+    /* Espaçamento entre as células */
+    margin-bottom: 20px;
+}
+
+.celula{
+    width: 80px;
+    height: 80px;
+    background-color: gold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.celula:hover{
+    background-color: greenyellow;
+}
+
+button{
+    padding: 10px;
+    font-size: 16px;
+    background-color: lightseagreen;
+    color: mediumseagreen;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: blue;
+}
